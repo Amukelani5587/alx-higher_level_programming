@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-"""Python function to create class Student"""
+"""
+14-main - Pascals Triangle
+"""
 
 
-class Student:
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
+def pascal_triangle(n):
+    if n <= 0:
+        return []
 
-    def to_json(self, attrs=None):
-        if attrs is None:
-            return self.__dict__
-        my_dict = {}
-        for items in attrs:
-            if hasattr(self, items):
-                my_dict[items] = getattr(self, items)
-        return my_dict
+    my_list = [[1]]
+    for count in range(1, n):
+        row = [1]
+        for elem in range(1, count):
+            row.append(my_list[count - 1][elem - 1] + my_list[count - 1][elem])
+        row.append(1)
+        my_list.append(row)
+    return my_list
